@@ -57,9 +57,6 @@ function App() {
         <Route exact path = '/user-list' element={<Protected_routes Component={UserListPage }/>} />
         <Route exact path = '/activeuser-list' element={<Protected_routes Component={ActiveUsers }/>} />
         <Route exact path = '/inactiveuser-list' element={<Protected_routes Component={ InActiveUsers }/>} />
-        <Route exact path = '/user-detail' element={<Protected_routes Component={UserDetails }/>} />
-        <Route exact path = '/activeuser-detail' element={<Protected_routes Component={ActiveUsersList }/>} />
-        <Route exact path = '/inactiveuser-detail' element={<Protected_routes Component={ InactiveUsersList }/>} />
         <Route exact path = '/pending-request' element={<Protected_routes Component={ PendingRequests }/>} />
         <Route exact path = '/payment-history' element={<Protected_routes Component={ PaymentHistory }/>} />
         <Route exact path = '/user-data' element={<Protected_routes Component={ UserData }/>} />
@@ -81,6 +78,3 @@ function App() {
 }
 
 export default App;
-
-
-

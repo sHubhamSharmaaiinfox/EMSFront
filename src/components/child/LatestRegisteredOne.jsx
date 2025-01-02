@@ -3,9 +3,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { apiGet, apiPost } from "../../services/client";
 import { useState, useEffect } from "react";
-
 const LatestRegisteredOne = () => {
     const [data,setData] = useState([]);
+  
+
     const getData = async () =>{
         try{
             const res = await apiGet('userapp/kwh-data');
@@ -34,6 +35,7 @@ const LatestRegisteredOne = () => {
         <div className="col-xxl-9 col-xl-12">
             <div className="card h-100">
                 <div className="card-body p-24">
+               
                     <div className="d-flex flex-wrap align-items-center gap-1 justify-content-between mb-16">
                         <ul
                             className="nav border-gradient-tab nav-pills mb-0"
@@ -75,7 +77,7 @@ const LatestRegisteredOne = () => {
                             tabIndex={0}
                         >
                             <div className="table-responsive scroll-sm">
-                                <table className="table bordered-table sm-table mb-0">
+                                <table className="table bordered-table sm-table mb-0"   id="dataTable">
                                     <thead>
                                         <tr>
                                             <th scope="col">Device Name</th>

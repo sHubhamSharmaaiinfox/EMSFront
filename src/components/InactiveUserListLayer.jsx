@@ -79,7 +79,7 @@ const InactiveUsersListLayer = () => {
                                 <td>{item?.first_name}</td>
                                 <td>{item?.last_name}</td>
                                 <td>{item?.email}</td>
-                                <td>{moment(item?.created_at).format("MMMM Do YYYY, h:mm:ss A")}  </td>
+                                <td>{moment(item?.created_at).format("MMMM Do YYYY")}  </td>
                                 <td>
                                     {item?.status === "1" ? (
                                         <span className="badge text-sm fw-semibold text-success-600 bg-success-100 px-20 py-9 radius-4 text-white   ">Active</span>

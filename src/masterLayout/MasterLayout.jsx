@@ -12,10 +12,29 @@ const MasterLayout = ({ children }) => {
   const location = useLocation();
   const [userData, setUserData] = useState(null);
   const [alertdata, setAlertData] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const Logout = () => {
     localStorage.removeItem("token");
 
+  };
+
+
+  // Open Modal
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // Close Modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+
+  const handleOutsideClick = (e) => {
+    if (e.target.classList.contains("modal-overlay")) {
+      closeModal();
+    }
   };
 
   useEffect(() => {
@@ -35,16 +54,20 @@ const MasterLayout = ({ children }) => {
         dropdown.classList.remove('open');
       });
 
+      // Toggle the clicked dropdown
       if (!isActive) {
         clickedDropdown.classList.add('open');
       }
     };
 
+    // Attach click event listeners to all dropdown triggers
     const dropdownTriggers = document.querySelectorAll('.sidebar-menu .dropdown > a, .sidebar-menu .dropdown > Link');
+
     dropdownTriggers.forEach((trigger) => {
       trigger.addEventListener('click', handleDropdownClick);
     });
 
+    // Function to open submenu based on current route
     const openActiveDropdown = () => {
       const allDropdowns = document.querySelectorAll('.sidebar-menu .dropdown');
       allDropdowns.forEach((dropdown) => {
@@ -111,6 +134,7 @@ const MasterLayout = ({ children }) => {
 
   return (
     <section className={mobileMenu ? "overlay active" : "overlay "}>
+      {/* sidebar */}
       <aside className={sidebarActive ? "sidebar active " : mobileMenu ? "sidebar sidebar-open" : "sidebar"}>
         <button onClick={mobileMenuControl} type="button" className="sidebar-close-btn">
           <Icon icon="radix-icons:cross-2" />
@@ -118,17 +142,17 @@ const MasterLayout = ({ children }) => {
         <div>
           <Link to="/" className="sidebar-logo">
             <img
-              src="assets/images/power-logo.png"
+              src="assets/images/enerygy.png"
               alt="site logo"
               className="light-logo"
             />
             <img
-              src="assets/images/power-logo.png"
+              src="assets/images/enerygy.png"
               alt="site logo"
               className="dark-logo"
             />
             <img
-              src="assets/images/power-logo.png"
+              src="assets/images/favicon-1.png"
               alt="site logo"
               className="logo-icon"
             />
@@ -157,40 +181,45 @@ const MasterLayout = ({ children }) => {
                 <span>KWH Data</span>
               </Link>
             </li>
+
+
             <li className="">
               <Link to="/amp-readings">
                 <Icon icon="material-symbols:table-chart-view-outline-rounded" className="menu-icon" />
                 <span>Amp Readings</span>
               </Link>
+
             </li>
+
+
             <li className="">
               <Link to="/anomalies">
                 <Icon icon="material-symbols:person-alert-outline-rounded" className="menu-icon" />
                 <span>Alerts</span>
               </Link>
+
             </li>
+
             <li className="">
               <Link to="/pricing">
                 <Icon
                   icon="fa-solid:award"
                   className="menu-icon"
                 />
-                <span>Subscription</span>
+                <span>Packages</span>
               </Link>
+
             </li>
+
+
+
             <li className="dropdown">
               <Link to="#">
                 <Icon icon="hugeicons:invoice-03" className="menu-icon" />
                 <span>Reports</span>
               </Link>
               <ul className="sidebar-submenu">
-                {/* <li>
-                  <NavLink to="/invoice-list" className={(navData) =>
-                    navData.isActive ? "active-page" : ""
-                  }>
-                    <i className="ri-circle-fill circle-icon text-primary-600 w-auto" /> Latest Data
-                  </NavLink>
-                </li> */}
+               
                 <li>
                   <NavLink to="/meter-list" className={(navData) =>
                     navData.isActive ? "active-page" : ""
@@ -199,28 +228,7 @@ const MasterLayout = ({ children }) => {
                     Meter List
                   </NavLink>
                 </li>
-                {/* <li>
-                  <NavLink to="/invoice-add" className={(navData) =>
-                    navData.isActive ? "active-page" : ""
-                  }>
-                    <i className="ri-circle-fill circle-icon text-primary-600 w-auto" /> Single Data Chart Report
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/invoice-edit" className={(navData) =>
-                    navData.isActive ? "active-page" : ""
-                  }>
-                    <i className="ri-circle-fill circle-icon text-primary-600 w-auto" /> Multiple Data Chart Report
-                  </NavLink>
-                </li>
-
-                <li>
-                  <NavLink to="/invoice-edit" className={(navData) =>
-                    navData.isActive ? "active-page" : ""
-                  }>
-                    <i className="ri-circle-fill circle-icon text-primary-600 w-auto" /> Manage Auto mail reports
-                  </NavLink>
-                </li> */}
+            
               </ul>
             </li>
 
@@ -379,6 +387,115 @@ const MasterLayout = ({ children }) => {
 
         {/* dashboard-main-body */}
         <div className="dashboard-main-body">{children}</div>
+
+
+                        {/* Floating Feedback Button */}
+        <div
+          className="floating-btn"
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            backgroundColor: "#007bff",
+            color: "white",
+            padding: "10px 15px",
+            borderRadius: "50px",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            cursor: "pointer",
+            transition: "0.3s ease-in-out",
+          }}
+          onClick={openModal}
+        >
+          <Icon icon="material-symbols:contact-support-outline" width="24" height="24" />Feedback
+        </div>
+
+        {/* Feedback Modal */}
+        {isModalOpen && (
+        <div
+          className="modal-overlay"
+          onClick={handleOutsideClick}
+          style={{
+            position: "fixed",
+            top: "0",
+            left: "0",
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: "9999",
+          }}
+        >
+          <div
+            className="card"
+            onClick={(e) => e.stopPropagation()} // Prevent click event from reaching the overlay
+            style={{
+              borderRadius: "10px",
+              padding: "20px",
+              width: "500px",
+              boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <div className="modal-header" style={{ display: "flex", justifyContent: "center" }}>
+              <h5 className="modal-head text-center">Feedback Form</h5>
+            
+            </div>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                alert("Feedback submitted!");
+                closeModal();
+              }}
+            >
+              <div className="modal-body">
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">Name:</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="form-control"
+                    placeholder="Your Name"
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="email" className="form-label">Email:</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className="form-control"
+                    placeholder="Your Email"
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="message" className="form-label">Message:</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    className="form-control"
+                    placeholder="Your Feedback"
+                    rows="4"
+                    required
+                  ></textarea>
+                </div>
+              </div>
+              <div className="modal-footer" style={{ textAlign: "right" }}>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  style={{ padding: "8px 20px", backgroundColor: "#007bff", borderColor: "#007bff" }}
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
         {/* Footer section */}
         <footer className="d-footer">

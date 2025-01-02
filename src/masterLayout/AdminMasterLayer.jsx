@@ -4,6 +4,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import ThemeToggleButton from "../helper/ThemeToggleButton";
 import { apiGet, apiPost } from "../services/client";
 import Avatar from "react-avatar";
+
 const AdminMasterLayer = ({ children }) => {
     let [sidebarActive, seSidebarActive] = useState(false);
     let [mobileMenu, setMobileMenu] = useState(false);
@@ -14,6 +15,9 @@ const AdminMasterLayer = ({ children }) => {
         localStorage.removeItem("token");
 
     };
+
+
+
 
     useEffect(() => {
         // Function to handle dropdown clicks
@@ -99,6 +103,7 @@ const AdminMasterLayer = ({ children }) => {
     
 
         const PaymentNotification = async () => {
+          
             try {
                 const res = await apiGet("admin/payment-notifications");
                 if (res?.data?.status === true) {
@@ -123,8 +128,8 @@ const AdminMasterLayer = ({ children }) => {
 
        
     return (
+    
         <section className={mobileMenu ? "overlay active" : "overlay "}>
-            {/* sidebar */}
             <aside className={sidebarActive ? "sidebar active " : mobileMenu ? "sidebar sidebar-open" : "sidebar"}>
                 <button onClick={mobileMenuControl} type="button" className="sidebar-close-btn">
                     <Icon icon="radix-icons:cross-2" />
@@ -132,17 +137,17 @@ const AdminMasterLayer = ({ children }) => {
                 <div>
                     <Link to="/" className="sidebar-logo">
                         <img
-                            src="assets/images/power-logo.png"
+                            src="assets/images/enerygy.png"
                             alt="site logo"
                             className="light-logo"
                         />
                         <img
-                            src="assets/images/power-logo.png"
+                            src="assets/images/enerygy.png"
                             alt="site logo"
                             className="dark-logo"
                         />
                         <img
-                            src="assets/images/power-logo.png"
+                            src="assets/images/favicon-1.png"
                             alt="site logo"
                             className="logo-icon"
                         />
@@ -223,7 +228,7 @@ const AdminMasterLayer = ({ children }) => {
                                     icon="fa-solid:award"
                                     className="menu-icon"
                                 />
-                                <span>Subscription</span>
+                                <span>Packages</span>
                             </Link>
                         </li>
 
@@ -244,6 +249,33 @@ const AdminMasterLayer = ({ children }) => {
 
                             </ul>
                         </li>
+
+                     
+                        <li className="dropdown">
+                            <Link to="#">
+                                
+                           <Icon  icon="material-symbols-light:settings-b-roll-outline-rounded" className="menu-icon" />
+                                <span>Application</span>
+                            </Link>
+                            <ul className="sidebar-submenu">
+                                <li>
+                                    <NavLink to="/" className={(navData) =>
+                                        navData.isActive ? "active-page" : ""
+                                    }>
+                                        <i className="ri-circle-fill circle-icon text-primary-600 w-auto" /> EMS
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/EMS" className={(navData) =>
+                                        navData.isActive ? "active-page" : ""
+                                    }>
+                                        <i className="ri-circle-fill circle-icon text-warning-main w-auto" />Coming Soon
+                                    </NavLink>
+                                </li>
+
+                            </ul>
+                        </li>
+                  
 
                     </ul>
                 </div>

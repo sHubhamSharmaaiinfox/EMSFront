@@ -10,7 +10,9 @@ import { Cursor } from '@phosphor-icons/react';
 const PaymentHistoryLayers = () => {
 
     const [data, setData] = useState([]);
+    const { parse } = require('json2csv');
 
+  
 
 
 
@@ -28,6 +30,27 @@ const PaymentHistoryLayers = () => {
                 setTimeout(() => {
                     $("#dataTable").DataTable({
                         pageLength: 10,
+                        dom: 'Bfrtip',
+                        buttons: [
+                            {
+                                extend: 'csv', 
+                                text: ' <img src="../assets/images/csv.png" alt="CSV" width="20" height="20" /> CSV',
+                            },
+                            {
+                                extend: 'pdf', 
+                                text: '<img src="../assets/images/pdf.png" alt="CSV" width="20" height="20" /> PDF',
+                                orientation: 'landscape',
+                                pageSize: 'A4',
+                                title: 'User Data',
+                                exportOptions: {
+                                    columns: ':visible', 
+                                },
+                            },
+                            {
+                                extend: 'print', 
+                                text: '   <img src="../assets/images/print.png" alt="CSV" width="20" height="20" /> Print',
+                            },
+                        ],
                     });
                 }, 0);
             } else {
@@ -61,6 +84,9 @@ const PaymentHistoryLayers = () => {
             </div>
 
             <div className="card-body">
+
+       
+                
                 {data ? (
                     <table
                         className="table bordered-table mb-0"
@@ -122,7 +148,7 @@ const PaymentHistoryLayers = () => {
                                     <td>{item?.currrency}</td>
                                     <td>{item?.amount}</td>
                                     <td>{item?.comment}</td>
-                                    <td>{moment(item?.created_at).format("MMMM Do YYYY, h:mm:ss A")}  </td>
+                                    <td>{moment(item?.created_at).format("MMMM Do YYYY")}  </td>
                                     <td>
                                         {item?.status === "0" ? (
                                             <span

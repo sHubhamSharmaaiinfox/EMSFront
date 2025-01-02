@@ -7,7 +7,14 @@ import { apiGet,apiPost } from "../services/client";
 import moment from "moment";
 
 const InActiveUsersLayers = () => {
+
+
     const [data,setData] = useState([]); 
+
+
+
+
+
 
     const getData = async () => {
         try {
@@ -20,6 +27,27 @@ const InActiveUsersLayers = () => {
                 setTimeout(() => {
                     $("#dataTable").DataTable({
                         pageLength: 10,
+                        dom: 'Bfrtip', // Add buttons to the DOM
+                        buttons: [
+                            {
+                                extend: 'csv', // Download CSV
+                                text: ' <img src="../assets/images/csv.png" alt="CSV" width="20" height="20" /> CSV',
+                            },
+                            {
+                                extend: 'pdf', // PDF export
+                                text: '<img src="../assets/images/pdf.png" alt="CSV" width="20" height="20" /> PDF',
+                                orientation: 'landscape',
+                                pageSize: 'A4',
+                                title: 'User Data',
+                                exportOptions: {
+                                    columns: ':visible', // Export only visible columns
+                                },
+                            },
+                            {
+                                extend: 'print', // Print table
+                                text: '   <img src="../assets/images/print.png" alt="CSV" width="20" height="20" /> Print',
+                            },
+                        ],
                     });
                 }, 0);
             } else {
@@ -44,9 +72,9 @@ const InActiveUsersLayers = () => {
     return (
         <div className="card basic-data-table">
             <div className="card-header d-flex justify-content-between">
+            <h5 className="card-title mb-0">Inactive Users</h5>
             </div>
             <div className="card-body">
-
 
                 { data? 
                 <table
@@ -78,7 +106,7 @@ const InActiveUsersLayers = () => {
                                 <td>{item?.first_name}</td>
                                 <td>{item?.last_name}</td>
                                 <td>{item?.email}</td>
-                                <td>{moment(item?.created_at).format("MMMM Do YYYY, h:mm:ss A")}  </td>
+                                <td>{moment(item?.created_at).format("MMMM Do YYYY")}  </td>
                                 <td>
                                     {item?.status === "1" ? (
                                         <span className="badge text-sm fw-semibold text-success-600 bg-success-100 px-20 py-9 radius-4 text-white   ">Active</span>
