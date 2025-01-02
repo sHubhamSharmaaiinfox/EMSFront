@@ -26,15 +26,8 @@ import CheckoutUser from "./userpages/CheckoutPage";
 import PaymentSettings from "./adminpages/Payment-Setting";
 import AddMeter from "./userpages/AddMeter";
 import AdminProfile from "./adminpages/AdminProfile";
-import Dashboard from "./superadminpages/Dashboard";
-import SuperAdminProfile from "./superadminpages/SuperAdminProfile";
-import AdminListPage from "./superadminpages/AdminListPage";
-import ActiveAdmin from "./superadminpages/ActiveAdmin";
-import InactiveAdmin from "./superadminpages/InactiveAdmin";
-import UserLists from "./components/UserList";
-import UserDetails from "./superadminpages/UserLists";
-import ActiveUsersList from "./superadminpages/ActiveUsersList";
-import InactiveUsersList from "./superadminpages/InactiveUserList";
+import EnergySystem from "./adminpages/EnergySystem";
+
 
 function App() {
   return (
@@ -56,9 +49,6 @@ function App() {
         <Route exact path = '/user-list' element={<Protected_routes Component={UserListPage }/>} />
         <Route exact path = '/activeuser-list' element={<Protected_routes Component={ActiveUsers }/>} />
         <Route exact path = '/inactiveuser-list' element={<Protected_routes Component={ InActiveUsers }/>} />
-        <Route exact path = '/user-detail' element={<Protected_routes Component={UserDetails }/>} />
-        <Route exact path = '/activeuser-detail' element={<Protected_routes Component={ActiveUsersList }/>} />
-        <Route exact path = '/inactiveuser-detail' element={<Protected_routes Component={ InactiveUsersList }/>} />
         <Route exact path = '/pending-request' element={<Protected_routes Component={ PendingRequests }/>} />
         <Route exact path = '/payment-history' element={<Protected_routes Component={ PaymentHistory }/>} />
         <Route exact path = '/user-data' element={<Protected_routes Component={ UserData }/>} />
@@ -68,11 +58,7 @@ function App() {
         <Route exact path = '/add-meter' element={<Protected_routes Component={ AddMeter }/>} />
         <Route exact path = '/admin-profile' element={<Protected_routes Component={ AdminProfile }/>} />
         <Route exact path = '/meter-view' element={<Protected_routes Component={ MeterView }/>} />
-        <Route exact path = '/superadmin-dashboard' element={<Protected_routes Component={ Dashboard }/>} />
-        <Route exact path = '/superadmin-profile' element={<Protected_routes Component={ SuperAdminProfile }/>} />
-        <Route exact path = '/admin-list' element={<Protected_routes Component={ AdminListPage }/>} />
-        <Route exact path = '/active-admin' element={<Protected_routes Component={ ActiveAdmin }/>} />
-        <Route exact path = '/inactive-admin' element={<Protected_routes Component={ InactiveAdmin }/>} />
+        <Route exact path = '/EMS' element={<Protected_routes Component={ EnergySystem }/>} />
       </Routes>
     </BrowserRouter>
   );

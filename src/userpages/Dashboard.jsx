@@ -6,7 +6,6 @@ const UserDashboard = () => {
   return (
     <>
       <MasterLayout>
-        <Breadcrumb title="AI" />
         <DashBoardLayerOne />
       </MasterLayout>
     </>

@@ -6,9 +6,7 @@ import $ from 'jquery';
 import 'datatables.net-dt/js/dataTables.dataTables.js';
 import { ToastContainer, toast } from 'react-toastify';
 import moment from "moment";    
-
 const AddMetersUser = () => {
-
 
 
     const [status, setStatus] = useState(null)
@@ -17,6 +15,11 @@ const AddMetersUser = () => {
     const [location, setLocation] = useState(null);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState(null);
+
+
+  
+
+
     const checkStatus = async () => {
         try {
             const res = await apiGet("userapp/ismember");
@@ -42,28 +45,45 @@ const AddMetersUser = () => {
             console.log("all meter data", res);
             if (res?.data?.status === true) {
                 setData(res?.data?.data);
-
+    
                 if ($.fn.DataTable.isDataTable("#dataTable")) {
                     $("#dataTable").DataTable().destroy();
                 }
-
+    
                 setTimeout(() => {
                     $("#dataTable").DataTable({
                         pageLength: 10,
+                        dom: 'Bfrtip', // Add buttons to the DOM
+                        buttons: [
+                            {
+                                extend: 'csv', // Download CSV
+                                text: ' <img src="../assets/images/csv.png" alt="CSV" width="20" height="20" /> CSV',
+                            },
+                            {
+                                extend: 'pdf', // PDF export
+                                text: '<img src="../assets/images/pdf.png" alt="CSV" width="20" height="20" /> PDF',
+                                orientation: 'landscape',
+                                pageSize: 'A4',
+                                title: 'User Data',
+                                exportOptions: {
+                                    columns: ':visible', // Export only visible columns
+                                },
+                            },
+                            {
+                                extend: 'print', // Print table
+                                text: '   <img src="../assets/images/print.png" alt="CSV" width="20" height="20" /> Print',
+                            },
+                        ],
                     });
                 }, 0);
-
-
             } else {
                 console.log(res?.data?.message);
-
             }
         } catch (e) {
             console.log(e);
-
         }
     };
-
+  
 
     const CreateMeter = async () => {
 
@@ -136,21 +156,11 @@ const AddMetersUser = () => {
 
 
 
-        <div className="col-lg-12 d-flex justify-content-center align-items-center p-4 card">
+        <div className="col-lg-12 d-flex justify-content-center align-items-center p-4">
 
 
             <ToastContainer/>
-
-            {/* Before Subscription Page */}
-
-
-            {/* After Subscription Page */}
-
-
             {status ?
-
-
-
                 <>
                     {status == "1" ? <div className="card basic-data-table col-lg-12">
                         <div className="card-header d-flex justify-content-between">
@@ -233,8 +243,6 @@ const AddMetersUser = () => {
 
                         </div>
                         <div className="card-body">
-
-
                             <table
                                 className="table bordered-table mb-0"
                                 id="dataTable"

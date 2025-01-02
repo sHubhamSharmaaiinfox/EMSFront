@@ -32,6 +32,27 @@ const Anomaliesayer = () => {
                 setTimeout(() => {
                     $("#dataTable").DataTable({
                         pageLength: 10,
+                        dom: 'Bfrtip', // Add buttons to the DOM
+                        buttons: [
+                            {
+                                extend: 'csv', // Download CSV
+                                text: ' <img src="../assets/images/csv.png" alt="CSV" width="20" height="20" /> CSV',
+                            },
+                            {
+                                extend: 'pdf', // PDF export
+                                text: '<img src="../assets/images/pdf.png" alt="CSV" width="20" height="20" /> PDF',
+                                orientation: 'landscape',
+                                pageSize: 'A4',
+                                title: 'User Data',
+                                exportOptions: {
+                                    columns: ':visible', // Export only visible columns
+                                },
+                            },
+                            {
+                                extend: 'print', // Print table
+                                text: '   <img src="../assets/images/print.png" alt="CSV" width="20" height="20" /> Print',
+                            },
+                        ],  
                     });
                 }, 0);
                  

@@ -13970,3 +13970,65 @@ h2.scanh2 {
 .sb-avatar__text{
   border-radius: 50%;
 }
+.dt-buttons {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-left: 0px !important;
+}
+.dt-button span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+  transition: 0.3s ease-in-out;
+}
+.dt-button span img {
+  width: 30%;
+}
+.dt-button span:hover{
+  color: #2D4AF1;
+  border: 1px solid #2D4AF1;
+  transform: scale(1.05);
+}
+.dt-search {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.btn-col {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 15px;
+}
+.btn-col button {
+  border: 1px solid #ccc;
+  display: flex;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: 16px;
+  transition: 0.3s ease-in-out;
+}
+.btn-col button:hover{
+ color: #2d4af1;
+ border: 1px solid #2d4af1;
+ transform: scale(1.05);
+}
+.btn-col img {
+  width: 30%;
+}
+
+span.toggle-password {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  align-items: center;
+  margin: 0;
+}
