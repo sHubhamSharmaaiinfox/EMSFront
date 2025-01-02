@@ -35,6 +35,7 @@ import UserLists from "./components/UserList";
 import UserDetails from "./superadminpages/UserLists";
 import ActiveUsersList from "./superadminpages/ActiveUsersList";
 import InactiveUsersList from "./superadminpages/InactiveUserList";
+import AdminPackageReports from "./superadminpages/AdminPackageReports";
 
 function App() {
   return (
@@ -73,6 +74,7 @@ function App() {
         <Route exact path = '/admin-list' element={<Protected_routes Component={ AdminListPage }/>} />
         <Route exact path = '/active-admin' element={<Protected_routes Component={ ActiveAdmin }/>} />
         <Route exact path = '/inactive-admin' element={<Protected_routes Component={ InactiveAdmin }/>} />
+        <Route exact path = '/admin-package' element={<Protected_routes Component={ AdminPackageReports }/>} />
       </Routes>
     </BrowserRouter>
   );

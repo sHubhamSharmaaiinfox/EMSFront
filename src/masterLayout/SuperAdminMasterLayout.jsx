@@ -248,24 +248,21 @@ const SuperAdminMasterLayout = ({ children }) => {
                             </Link>
                         </li>
 
-                        {/* <li className="dropdown">
+                        <li className="dropdown">
                             <Link to="#">
                                 <Icon icon="material-symbols-light:settings-b-roll-outline-rounded" className="menu-icon" />
-                                <span>Setting</span>
+                                <span>Reports</span>
                             </Link>
                             <ul className="sidebar-submenu">
                                 <li>
-                                    <NavLink to="/payment-setting" className={(navData) =>
+                                    <NavLink to="/admin-package" className={(navData) =>
                                         navData.isActive ? "active-page" : ""
                                     }>
-                                        <i className="ri-circle-fill circle-icon text-primary-600 w-auto" /> Payment Setting
+                                        <i className="ri-circle-fill circle-icon text-primary-600 w-auto" /> Admin Package
                                     </NavLink>
                                 </li>
-
-
                             </ul>
-                        </li> */}
-
+                        </li>
                     </ul>
                 </div>
             </aside>

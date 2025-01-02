@@ -19,7 +19,7 @@ import pdfmake from 'pdfmake'
 const SubscriptionLayers = () => {
 
     const [data, setData] = useState([]);
-    const [editItem, setEditItem] = useState(null); // Holds data for the item being edited
+    const [editItem, setEditItem] = useState(null); 
     const [loading, setLoading] = useState(false);
 
     const CreatePackage = async () => {
@@ -201,7 +201,7 @@ const SubscriptionLayers = () => {
                                             className="form-control"
                                             value={editItem?.plan_period || ''}
                                             onChange={(e) => handleInputChange('plan_period', e.target.value)}
-                                            placeholder="Enter Plan Period in numbers"
+                                            placeholder="Enter Plan Period in months"
                                         />
                                     </div>
 
@@ -212,7 +212,7 @@ const SubscriptionLayers = () => {
                                             className="form-control"
                                             value={editItem?.limit || ''}
                                             onChange={(e) => handleInputChange('limit', e.target.value)}
-                                            placeholder="Enter Limit of devices"
+                                            placeholder="Enter Limit of Users"
                                         />
                                     </div>
 
@@ -268,8 +268,8 @@ const SubscriptionLayers = () => {
                                         </Link>
                                     </td>
                                     <td>{item?.amount}</td>
-                                    <td>{item?.plan_period}</td>
-                                    <td>{item?.limit}</td>
+                                    <td>{item?.plan_period} months</td>
+                                    <td>{item?.limit} users</td>
                                     <td>{moment(item?.created_at).format("MMMM Do YYYY, h:mm:ss A")}</td>
                                     <td>
                                         {item?.status === "1" ? (
